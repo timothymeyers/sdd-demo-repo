@@ -128,7 +128,7 @@ The backend uses:
 - Express for the REST API
 - SQLite3 for data persistence
 - CORS for cross-origin requests
-- Body-parser for JSON parsing
+- Built-in Express JSON parsing middleware
 
 ### Frontend Development
 The frontend uses:
@@ -149,6 +149,22 @@ Key responsive features:
 - Mobile-friendly touch targets
 - Adaptive font sizes
 - Collapsible task actions on small screens
+
+## Security Considerations
+
+This is a development/demo application. For production use, consider implementing:
+- Rate limiting on API endpoints to prevent abuse
+- Authentication and authorization
+- Input validation and sanitization
+- HTTPS/TLS encryption
+- Environment-based configuration for sensitive data
+- Database connection pooling and proper error handling
+
+**Current Security Status:**
+- ✅ No vulnerable dependencies detected
+- ⚠️ Rate limiting not implemented (suitable for demo/development)
+- ✅ SQL injection prevented through parameterized queries
+- ✅ CORS configured for cross-origin requests
 
 ## License
 
