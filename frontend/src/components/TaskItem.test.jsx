@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import TaskItem from '../components/TaskItem';
+import TaskItem from './TaskItem';
 
 describe('TaskItem', () => {
   const mockTask = {

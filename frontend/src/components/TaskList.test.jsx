@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import TaskList from '../components/TaskList';
+import TaskList from './TaskList';
 
 describe('TaskList', () => {
   const mockTasks = [
