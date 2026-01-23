@@ -4,7 +4,7 @@ GH Copilot Agent Issue Assignment demo creating a To-Do app
 ## Projects
 
 ### Employee Attrition Strategy
-A comprehensive Account Technology Strategist perspective on helping enterprise customers address employee attrition using Microsoft's technology portfolio. See [EMPLOYEE_ATTRITION_STRATEGY.md](EMPLOYEE_ATTRITION_STRATEGY.md) for the strategic framework.
+A comprehensive Account Technology Strategist perspective on helping enterprise customers address employee attrition using Microsoft's technology portfolio. See [EMPLOYEE_ATTRITION_STRATEGY.md](data-reports/EMPLOYEE_ATTRITION_STRATEGY.md) for the strategic framework.
 
 ### Employee Attrition ML Analysis
 Technical implementation of employee attrition prediction using machine learning on the IBM HR Analytics dataset. See [README_ATTRITION.md](README_ATTRITION.md) for details.
