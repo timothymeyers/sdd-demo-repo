@@ -129,7 +129,8 @@ All functions and methods must include type hints using Python 3.11+ syntax:
 ```python
 from typing import Any, Self
 
-# Python 3.11+ style with | for unions and built-in generic types
+# Built-in generic types (list, dict, tuple) - Python 3.9+
+# Union operator | - Python 3.10+
 def process_data(items: list[dict[str, Any]], max_count: int = 100) -> tuple[list[str], int]:
     """Process items and return results with count.
     
@@ -145,14 +146,14 @@ def process_data(items: list[dict[str, Any]], max_count: int = 100) -> tuple[lis
     """
     pass
 
-# Use | operator for optional types (Python 3.11+ compatible)
+# Union operator | for optional types - Python 3.10+
 def get_user_name(user_id: int) -> str | None:
     """Get user name by ID, returns None if not found."""
     pass
 
-# Use Self type for methods that return instance of their class (Python 3.11+)
+# Self type for methods that return instance of their class - Python 3.11+
 class Builder:
-    """Example using Self type from typing module."""
+    """Example using Self type from typing module (PEP 673)."""
     
     def set_name(self, name: str) -> Self:
         """Set name and return self for method chaining."""
