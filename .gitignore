@@ -1,0 +1,19 @@
+# Universal patterns
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.log
+.vscode/
+.idea/
+
+# Environment variables
+.env
+.env.*
+
+# Temporary files
+/tmp/
+
+# Editor files
+*~
+.*.sw[a-z]

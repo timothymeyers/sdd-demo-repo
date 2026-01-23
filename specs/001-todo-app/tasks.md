@@ -28,10 +28,10 @@ description: "Task list for Simple To-Do Web App implementation"
 
 **Purpose**: Create basic project structure and skeleton HTML file
 
-- [ ] T001 Create index.html with basic HTML5 structure and metadata (title, charset, viewport)
-- [ ] T002 Add main container structure with header, input section, and task list sections in index.html
-- [ ] T003 Initialize git repository and create .gitignore file for project
-- [ ] T004 Create README.md with project description and setup instructions per quickstart.md
+- [X] T001 Create index.html with basic HTML5 structure and metadata (title, charset, viewport)
+- [X] T002 Add main container structure with header, input section, and task list sections in index.html
+- [X] T003 Initialize git repository and create .gitignore file for project
+- [X] T004 Create README.md with project description and setup instructions per quickstart.md
 
 **Checkpoint**: Basic HTML structure ready, project initialized
 
@@ -43,14 +43,14 @@ description: "Task list for Simple To-Do Web App implementation"
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 [P] Add CSS reset and base styles (variables, fonts, layout) in index.html `<style>` section
-- [ ] T006 Implement Task data structure and state management (tasks array, STORAGE_KEY constant) in index.html `<script>` section
-- [ ] T007 Implement loadTasksFromStorage() function with error handling and data sanitization in index.html
-- [ ] T008 Implement saveTasksToStorage() function with quota exceeded and disabled handling in index.html
-- [ ] T009 Implement validateTaskText() function (non-empty, ≤500 chars) in index.html
-- [ ] T010 Implement generateTaskId() utility using crypto.randomUUID() with fallback in index.html
-- [ ] T011 Implement showWarning() function for displaying error/warning banners in index.html
-- [ ] T012 Add initialization code to call loadTasksFromStorage() on DOMContentLoaded in index.html
+- [X] T005 [P] Add CSS reset and base styles (variables, fonts, layout) in index.html `<style>` section
+- [X] T006 Implement Task data structure and state management (tasks array, STORAGE_KEY constant) in index.html `<script>` section
+- [X] T007 Implement loadTasksFromStorage() function with error handling and data sanitization in index.html
+- [X] T008 Implement saveTasksToStorage() function with quota exceeded and disabled handling in index.html
+- [X] T009 Implement validateTaskText() function (non-empty, ≤500 chars) in index.html
+- [X] T010 Implement generateTaskId() utility using crypto.randomUUID() with fallback in index.html
+- [X] T011 Implement showWarning() function for displaying error/warning banners in index.html
+- [X] T012 Add initialization code to call loadTasksFromStorage() on DOMContentLoaded in index.html
 
 **Checkpoint**: Foundation ready - data model, storage, validation infrastructure complete
 
