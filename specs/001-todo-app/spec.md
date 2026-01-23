@@ -5,6 +5,12 @@
 **Status**: Draft  
 **Input**: User description: "My goal create a very simple web app where users can add, edit, and delete tasks"
 
+## Clarifications
+
+### Session 2026-01-23
+
+- Q: What data persistence mechanism should be used for storing tasks? → A: Browser LocalStorage - persists indefinitely, survives browser restarts
+
 ## User Scenarios & Testing *(mandatory)*
 
 <!--
@@ -72,9 +78,10 @@ A user can modify the text of existing tasks to correct mistakes or update infor
 
 - What happens when the user creates a very long task title (e.g., 1000+ characters)?
 - How does the system handle rapid consecutive task creation (e.g., clicking add 10 times quickly)?
-- What happens when the user refreshes the page - are tasks persisted or lost?
 - How does the system behave with special characters in task names (emojis, quotes, HTML tags)?
 - What happens if the user tries to edit and delete a task simultaneously (race condition)?
+- What happens when LocalStorage quota is exceeded (typically 5-10MB per domain)?
+- How does the system handle LocalStorage being disabled or unavailable in the browser?
 
 ## Requirements *(mandatory)*
 
@@ -88,6 +95,7 @@ A user can modify the text of existing tasks to correct mistakes or update infor
 - **FR-006**: System MUST provide visual feedback when tasks are created, edited, or deleted
 - **FR-007**: System MUST maintain task order consistently (either by creation time or user-defined order)
 - **FR-008**: System MUST handle task text of reasonable length (supporting at least 500 characters per task)
+- **FR-009**: System MUST persist tasks using browser LocalStorage, ensuring data survives page refreshes and browser restarts
 
 ### Key Entities *(include if feature involves data)*
 
@@ -113,11 +121,12 @@ A user can modify the text of existing tasks to correct mistakes or update infor
 
 ### Assumptions
 
-- Users have access to a modern web browser (within last 2 versions of major browsers)
+- Users have access to a modern web browser (within last 2 versions of major browsers) with LocalStorage enabled
 - Single user experience - no multi-user collaboration or authentication required
-- Tasks are stored locally in the user's browser (persistence requirement is for single device/browser)
+- Tasks are stored locally in the user's browser using LocalStorage (data persists across sessions but is device/browser-specific)
 - Task text is primarily plain text (special characters allowed but no rich formatting required)
-- Standard web connectivity is available (no offline-first requirement)
+- Standard web connectivity is available (no offline-first requirement beyond LocalStorage persistence)
+- Total task data will remain within browser LocalStorage limits (typically 5-10MB per domain)
 
 ### Dependencies
 
