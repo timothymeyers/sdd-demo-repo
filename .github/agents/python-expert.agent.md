@@ -116,7 +116,15 @@ All functions and methods must include type hints:
 from typing import Any
 
 def process_data(items: list[dict[str, Any]], max_count: int = 100) -> tuple[list[str], int]:
-    """Process items and return results with count."""
+    """Process items and return results with count.
+    
+    Args:
+        items: List of dictionaries containing data to process
+        max_count: Maximum number of items to process
+    
+    Returns:
+        Tuple of (processed_results, count)
+    """
     pass
 ```
 
