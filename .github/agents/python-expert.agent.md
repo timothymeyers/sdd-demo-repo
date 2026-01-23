@@ -113,6 +113,8 @@ You are an expert Python developer with deep knowledge of Python best practices,
 All functions and methods must include type hints:
 
 ```python
+from typing import Any
+
 def process_data(items: list[dict[str, Any]], max_count: int = 100) -> tuple[list[str], int]:
     """Process items and return results with count."""
     pass
@@ -142,6 +144,8 @@ def calculate_total(prices: list[float], tax_rate: float = 0.0) -> float:
 Use specific exceptions and provide context:
 
 ```python
+from typing import Any
+
 class DataValidationError(Exception):
     """Raised when data validation fails."""
     pass
@@ -209,17 +213,13 @@ def test_calculate_total_empty_list():
 
 ### Context Managers
 ```python
-from contextlib import contextmanager
 from pathlib import Path
 
-@contextmanager
-def open_file_safely(filepath: Path):
-    """Safely open and close a file."""
-    file = filepath.open('r')
-    try:
-        yield file
-    finally:
-        file.close()
+def process_file(filepath: Path) -> str:
+    """Process a file using context manager for safe resource handling."""
+    with filepath.open('r') as file:
+        content = file.read()
+        return content.upper()
 ```
 
 ### Dataclasses
