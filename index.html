@@ -109,6 +109,256 @@
             font-size: 1.1rem;
             margin: 0;
         }
+
+        /* Task Form Styling */
+        .task-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .char-counter {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        .char-counter.warning {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .char-counter.danger {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #357abd;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-primary:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+        }
+
+        /* Task List Item Styling */
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: white;
+            transition: var(--transition);
+        }
+
+        .task-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--success-color);
+        }
+
+        .task-text {
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .task-text.completed {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 4px 8px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+
+        .btn-icon:hover {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .btn-delete:hover {
+            color: var(--danger-color);
+        }
+
+        .btn-edit:hover {
+            color: var(--primary-color);
+        }
+
+        /* Edit Mode Styling */
+        .task-edit-input {
+            flex: 1;
+            padding: 8px 12px;
+            font-size: 1rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .task-edit-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .edit-char-counter {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .edit-char-counter.warning {
+            color: var(--warning-color);
+            font-weight: 600;
+        }
+
+        .edit-char-counter.danger {
+            color: var(--danger-color);
+            font-weight: 600;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .btn-save {
+            color: var(--success-color);
+        }
+
+        .btn-save:hover {
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .btn-cancel {
+            color: var(--danger-color);
+        }
+
+        .btn-cancel:hover {
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        /* Drag and Drop Styling */
+        .task-item[draggable="true"] {
+            cursor: move;
+        }
+
+        .task-item.dragging {
+            opacity: 0.5;
+            background: var(--bg-secondary);
+        }
+
+        .task-item.drag-over {
+            border-top: 3px solid var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 640px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 8px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .input-section {
+                padding: 20px;
+            }
+
+            .task-item {
+                padding: 14px 16px;
+            }
+
+            .task-actions {
+                gap: 4px;
+            }
+
+            .btn-icon {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Smooth Transitions */
+        .task-item {
+            transition: background-color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .task-text {
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon {
+            transition: all 0.2s ease;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +368,23 @@
         </header>
         
         <section class="input-section">
-            <!-- Task input form will be added here -->
+            <form id="taskForm" class="task-form">
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        id="taskInput" 
+                        class="task-input" 
+                        placeholder="What needs to be done?"
+                        maxlength="500"
+                        autocomplete="off"
+                        aria-label="Task description"
+                    >
+                    <div class="char-counter">
+                        <span id="charCount">0</span> / 500 characters
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
         </section>
         
         <section class="task-list-section">
@@ -268,25 +534,392 @@
             }
         }
 
-        // ===== INITIALIZATION =====
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            loadTasksFromStorage();
-            renderTaskList();
-            console.log('To-Do App initialized with', tasks.length, 'tasks');
-        });
+        // ===== TASK OPERATIONS =====
 
         /**
-         * Render task list (placeholder - will be implemented in US1)
+         * Create a new task
+         */
+        function createTask(text) {
+            const validation = validateTaskText(text);
+            if (!validation.valid) {
+                showWarning(validation.error);
+                return null;
+            }
+
+            // Increment order for existing tasks
+            tasks.forEach(task => {
+                task.order += 1;
+            });
+
+            const newTask = {
+                id: generateTaskId(),
+                text: text.trim(),
+                completed: false,
+                order: 1,
+                createdAt: Date.now(),
+                updatedAt: Date.now()
+            };
+
+            tasks.unshift(newTask);
+            saveTasksToStorage();
+            renderTaskList();
+            
+            return newTask;
+        }
+
+        /**
+         * Render task list in DOM
          */
         function renderTaskList() {
             const taskList = document.getElementById('taskList');
             
             if (tasks.length === 0) {
                 taskList.innerHTML = '<li class="empty-state"><p>No tasks yet. Add one above!</p></li>';
-            } else {
-                // Task rendering will be implemented in Phase 3
-                taskList.innerHTML = '<li class="empty-state"><p>Task rendering coming soon...</p></li>';
+                return;
+            }
+
+            taskList.innerHTML = tasks.map(task => `
+                <li class="task-item" data-task-id="${task.id}" draggable="true">
+                    <input 
+                        type="checkbox" 
+                        class="task-checkbox" 
+                        ${task.completed ? 'checked' : ''}
+                        onchange="toggleTaskCompletion('${task.id}')"
+                        aria-label="Mark task as ${task.completed ? 'incomplete' : 'complete'}"
+                    >
+                    <span class="task-text ${task.completed ? 'completed' : ''}" ondblclick="startEditTask('${task.id}')">${escapeHtml(task.text)}</span>
+                    <div class="task-actions">
+                        <button 
+                            class="btn-icon btn-edit" 
+                            onclick="startEditTask('${task.id}')"
+                            aria-label="Edit task"
+                            title="Edit task"
+                        >✎</button>
+                        <button 
+                            class="btn-icon btn-delete" 
+                            onclick="deleteTask('${task.id}')"
+                            aria-label="Delete task"
+                            title="Delete task"
+                        >×</button>
+                    </div>
+                </li>
+            `).join('');
+
+            // Setup drag and drop event listeners
+            setupDragAndDrop();
+        }
+
+        /**
+         * Escape HTML to prevent XSS
+         */
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        /**
+         * Delete a task
+         */
+        function deleteTask(taskId) {
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+            if (taskIndex === -1) {
+                showWarning('Task not found');
+                return null;
+            }
+
+            const deletedTask = tasks.splice(taskIndex, 1)[0];
+            
+            // Recalculate order values
+            tasks.forEach((task, index) => {
+                task.order = index + 1;
+            });
+
+            saveTasksToStorage();
+            renderTaskList();
+            
+            return deletedTask;
+        }
+
+        /**
+         * Toggle task completion
+         */
+        function toggleTaskCompletion(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) {
+                showWarning('Task not found');
+                return null;
+            }
+
+            task.completed = !task.completed;
+            task.updatedAt = Date.now();
+            
+            saveTasksToStorage();
+            renderTaskList();
+            
+            return task;
+        }
+
+        /**
+         * Start editing a task
+         */
+        function startEditTask(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) {
+                showWarning('Task not found');
+                return;
+            }
+
+            const taskItem = document.querySelector(`[data-task-id="${taskId}"]`);
+            const taskTextSpan = taskItem.querySelector('.task-text');
+            const taskActions = taskItem.querySelector('.task-actions');
+            
+            // Create edit input
+            const editInput = document.createElement('input');
+            editInput.type = 'text';
+            editInput.className = 'task-edit-input';
+            editInput.value = task.text;
+            editInput.maxLength = 500;
+            
+            // Create character counter
+            const charCounter = document.createElement('div');
+            charCounter.className = 'edit-char-counter';
+            charCounter.textContent = `${task.text.length} / 500`;
+            
+            // Create save/cancel buttons
+            const editActions = document.createElement('div');
+            editActions.className = 'edit-actions';
+            editActions.innerHTML = `
+                <button class="btn-icon btn-save" title="Save">✓</button>
+                <button class="btn-icon btn-cancel" title="Cancel">✗</button>
+            `;
+            
+            // Replace text with edit mode
+            taskTextSpan.style.display = 'none';
+            taskActions.style.display = 'none';
+            taskItem.appendChild(editInput);
+            taskItem.appendChild(charCounter);
+            taskItem.appendChild(editActions);
+            
+            editInput.focus();
+            editInput.select();
+            
+            // Character counter update
+            editInput.addEventListener('input', function() {
+                const length = editInput.value.length;
+                charCounter.textContent = `${length} / 500`;
+                if (length > 450 && length <= 500) {
+                    charCounter.classList.add('warning');
+                } else if (length > 500) {
+                    charCounter.classList.add('danger');
+                } else {
+                    charCounter.classList.remove('warning', 'danger');
+                }
+            });
+            
+            // Save button
+            editActions.querySelector('.btn-save').addEventListener('click', function() {
+                updateTask(taskId, editInput.value);
+            });
+            
+            // Cancel button
+            editActions.querySelector('.btn-cancel').addEventListener('click', function() {
+                cancelEdit(taskId);
+            });
+            
+            // Enter to save, Escape to cancel
+            editInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    updateTask(taskId, editInput.value);
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    cancelEdit(taskId);
+                }
+            });
+        }
+
+        /**
+         * Update task text
+         */
+        function updateTask(taskId, newText) {
+            const validation = validateTaskText(newText);
+            if (!validation.valid) {
+                showWarning(validation.error);
+                return null;
+            }
+
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) {
+                showWarning('Task not found');
+                return null;
+            }
+
+            task.text = newText.trim();
+            task.updatedAt = Date.now();
+            
+            saveTasksToStorage();
+            renderTaskList();
+            
+            return task;
+        }
+
+        /**
+         * Cancel edit mode
+         */
+        function cancelEdit(taskId) {
+            renderTaskList();
+        }
+
+        // ===== DRAG AND DROP =====
+        
+        let draggedTaskId = null;
+
+        /**
+         * Setup drag and drop event listeners
+         */
+        function setupDragAndDrop() {
+            const taskItems = document.querySelectorAll('.task-item');
+            
+            taskItems.forEach(item => {
+                item.addEventListener('dragstart', handleDragStart);
+                item.addEventListener('dragover', handleDragOver);
+                item.addEventListener('dragleave', handleDragLeave);
+                item.addEventListener('drop', handleDrop);
+                item.addEventListener('dragend', handleDragEnd);
+            });
+        }
+
+        /**
+         * Handle drag start
+         */
+        function handleDragStart(e) {
+            draggedTaskId = e.currentTarget.dataset.taskId;
+            e.currentTarget.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        /**
+         * Handle drag over
+         */
+        function handleDragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            
+            const targetItem = e.currentTarget;
+            if (targetItem.dataset.taskId !== draggedTaskId) {
+                targetItem.classList.add('drag-over');
+            }
+        }
+
+        /**
+         * Handle drag leave
+         */
+        function handleDragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        /**
+         * Handle drop
+         */
+        function handleDrop(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const targetTaskId = e.currentTarget.dataset.taskId;
+            
+            if (draggedTaskId && targetTaskId && draggedTaskId !== targetTaskId) {
+                reorderTask(draggedTaskId, targetTaskId);
+            }
+            
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        /**
+         * Handle drag end
+         */
+        function handleDragEnd(e) {
+            document.querySelectorAll('.task-item').forEach(item => {
+                item.classList.remove('dragging', 'drag-over');
+            });
+            draggedTaskId = null;
+        }
+
+        /**
+         * Reorder task by moving it to target position
+         */
+        function reorderTask(draggedId, targetId) {
+            const draggedIndex = tasks.findIndex(t => t.id === draggedId);
+            const targetIndex = tasks.findIndex(t => t.id === targetId);
+            
+            if (draggedIndex === -1 || targetIndex === -1) {
+                return;
+            }
+
+            // Remove dragged task and insert at target position
+            const [draggedTask] = tasks.splice(draggedIndex, 1);
+            tasks.splice(targetIndex, 0, draggedTask);
+            
+            // Recalculate order values
+            tasks.forEach((task, index) => {
+                task.order = index + 1;
+            });
+            
+            // Update timestamp for moved task
+            draggedTask.updatedAt = Date.now();
+            
+            saveTasksToStorage();
+            renderTaskList();
+        }
+
+        // ===== INITIALIZATION =====
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTasksFromStorage();
+            renderTaskList();
+            
+            // Setup form submission
+            const taskForm = document.getElementById('taskForm');
+            const taskInput = document.getElementById('taskInput');
+            const charCount = document.getElementById('charCount');
+
+            taskForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const text = taskInput.value.trim();
+                
+                if (text) {
+                    const task = createTask(text);
+                    if (task) {
+                        taskInput.value = '';
+                        charCount.textContent = '0';
+                        updateCharCounterStyle(0);
+                    }
+                } else {
+                    showWarning('Task cannot be empty');
+                }
+            });
+
+            // Character counter
+            taskInput.addEventListener('input', function() {
+                const length = taskInput.value.length;
+                charCount.textContent = length;
+                updateCharCounterStyle(length);
+            });
+
+            console.log('To-Do App initialized with', tasks.length, 'tasks');
+        });
+
+        /**
+         * Update character counter styling based on length
+         */
+        function updateCharCounterStyle(length) {
+            const charCounter = document.querySelector('.char-counter');
+            charCounter.classList.remove('warning', 'danger');
+            
+            if (length > 450 && length <= 500) {
+                charCounter.classList.add('warning');
+            } else if (length > 500) {
+                charCounter.classList.add('danger');
             }
         }
     </script>
