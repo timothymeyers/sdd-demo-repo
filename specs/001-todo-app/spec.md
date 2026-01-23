@@ -10,6 +10,10 @@
 ### Session 2026-01-23
 
 - Q: What data persistence mechanism should be used for storing tasks? → A: Browser LocalStorage - persists indefinitely, survives browser restarts
+- Q: Should tasks have completion status (done/not done) or are they simple list items only? → A: Include completion status with checkbox and visual distinction
+- Q: How should the app handle LocalStorage failures (disabled, quota exceeded, or unavailable)? → A: Graceful degradation with in-memory storage and user warning
+- Q: How should tasks be ordered in the list? → A: Creation order - newest first, with manual drag-and-drop reordering capability
+- Q: What is the maximum character length for a task description? → A: 500 characters with visual counter showing remaining characters
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -58,7 +62,23 @@ A user can remove tasks they no longer need from their to-do list. Once deleted,
 
 ---
 
-### User Story 3 - Edit Tasks (Priority: P3)
+### User Story 3 - Mark Tasks Complete (Priority: P2)
+
+A user can mark tasks as complete or incomplete by clicking a checkbox. Completed tasks are visually distinguished (e.g., strikethrough text, different color) so users can easily see what's done.
+
+**Why this priority**: Task completion tracking is a fundamental feature of to-do lists. Users need to track progress and distinguish between active and completed tasks. This is essential for the app to function as a meaningful task manager rather than just a list.
+
+**Independent Test**: Can be tested by creating a task, marking it complete, and verifying visual distinction. Unchecking returns it to incomplete state. Delivers core to-do list functionality.
+
+**Acceptance Scenarios**:
+
+1. **Given** the user has an incomplete task "Buy groceries", **When** they click the checkbox next to the task, **Then** the task is marked as complete with visual indication (e.g., strikethrough)
+2. **Given** the user has a completed task, **When** they click the checkbox again, **Then** the task returns to incomplete state without visual distinction
+3. **Given** the user has multiple tasks with mixed completion states, **When** they view the list, **Then** completed and incomplete tasks are clearly distinguishable
+
+---
+
+### User Story 4 - Edit Tasks (Priority: P3)
 
 A user can modify the text of existing tasks to correct mistakes or update information without having to delete and recreate the task.
 
@@ -74,14 +94,30 @@ A user can modify the text of existing tasks to correct mistakes or update infor
 
 ---
 
+### User Story 5 - Reorder Tasks (Priority: P4)
+
+A user can manually reorder tasks in the list by dragging and dropping them to their preferred position. By default, new tasks appear at the top of the list (newest first).
+
+**Why this priority**: Manual reordering is a nice-to-have feature that gives users control over task priority. The default newest-first ordering handles most use cases, making this a lower-priority enhancement.
+
+**Independent Test**: Can be tested by creating multiple tasks and dragging one to a different position. The new order persists after page refresh.
+
+**Acceptance Scenarios**:
+
+1. **Given** the user has multiple tasks in the list, **When** they drag a task from position 3 to position 1, **Then** the task moves to the top and other tasks shift down
+2. **Given** the user has reordered their tasks, **When** they refresh the page, **Then** the custom order is preserved
+3. **Given** the user creates a new task, **When** the task is added, **Then** it appears at the top of the list by default
+
+---
+
 ### Edge Cases
 
-- What happens when the user creates a very long task title (e.g., 1000+ characters)?
+- **Task length constraint**: When a user attempts to enter more than 500 characters, the system MUST prevent additional input and display the character counter in a warning state (e.g., red color)
 - How does the system handle rapid consecutive task creation (e.g., clicking add 10 times quickly)?
 - How does the system behave with special characters in task names (emojis, quotes, HTML tags)?
 - What happens if the user tries to edit and delete a task simultaneously (race condition)?
-- What happens when LocalStorage quota is exceeded (typically 5-10MB per domain)?
-- How does the system handle LocalStorage being disabled or unavailable in the browser?
+- **LocalStorage failure handling**: When LocalStorage is disabled, quota is exceeded, or unavailable, the system MUST gracefully degrade to in-memory storage and display a persistent warning banner informing the user that tasks will not persist across sessions
+- How does the app recover if LocalStorage data becomes corrupted or malformed?
 
 ## Requirements *(mandatory)*
 
@@ -89,19 +125,27 @@ A user can modify the text of existing tasks to correct mistakes or update infor
 
 - **FR-001**: System MUST allow users to create new tasks with a text description
 - **FR-002**: System MUST display all created tasks in a list format
-- **FR-003**: System MUST allow users to delete individual tasks from the list
-- **FR-004**: System MUST allow users to edit the text of existing tasks
-- **FR-005**: System MUST validate that tasks have non-empty text content before saving
-- **FR-006**: System MUST provide visual feedback when tasks are created, edited, or deleted
-- **FR-007**: System MUST maintain task order consistently (either by creation time or user-defined order)
-- **FR-008**: System MUST handle task text of reasonable length (supporting at least 500 characters per task)
-- **FR-009**: System MUST persist tasks using browser LocalStorage, ensuring data survives page refreshes and browser restarts
+- **FR-003**: System MUST allow users to mark tasks as complete or incomplete via checkbox
+- **FR-004**: System MUST visually distinguish completed tasks from incomplete tasks (e.g., strikethrough, color change, or checkbox state)
+- **FR-005**: System MUST allow users to delete individual tasks from the list
+- **FR-006**: System MUST allow users to edit the text of existing tasks
+- **FR-007**: System MUST validate that tasks have non-empty text content before saving
+- **FR-008**: System MUST provide visual feedback when tasks are created, edited, deleted, or completion status changes
+- **FR-009**: System MUST maintain task order with newest tasks appearing first by default
+- **FR-010**: System MUST allow users to manually reorder tasks via drag-and-drop interaction
+- **FR-011**: System MUST enforce a maximum task text length of 500 characters
+- **FR-012**: System MUST display a character counter showing remaining characters when users create or edit tasks
+- **FR-013**: System MUST prevent users from entering text beyond the 500 character limit and indicate when the limit is reached
+- **FR-014**: System MUST persist tasks, their completion status, and custom order using browser LocalStorage, ensuring data survives page refreshes and browser restarts
+- **FR-015**: System MUST gracefully handle LocalStorage failures (disabled, quota exceeded, unavailable) by falling back to in-memory storage and displaying a warning to users that data will not persist
 
 ### Key Entities *(include if feature involves data)*
 
 - **Task**: Represents a single to-do item with text content. Key attributes include:
   - Unique identifier to distinguish tasks
   - Text description (the main content)
+  - Completion status (boolean: complete or incomplete)
+  - Display order/position (integer for user-defined ordering)
   - Creation timestamp (for ordering and tracking)
   - Last modified timestamp (for audit purposes)
 
@@ -110,12 +154,13 @@ A user can modify the text of existing tasks to correct mistakes or update infor
 ### Measurable Outcomes
 
 - **SC-001**: Users can create a new task in under 5 seconds from opening the app
-- **SC-002**: Users can delete a task with a single action (one click/tap)
-- **SC-003**: Users can edit a task and save changes in under 10 seconds
-- **SC-004**: The interface responds to user actions (create, edit, delete) within 100 milliseconds
-- **SC-005**: 95% of users successfully complete the primary task flow (add task, view task, delete task) on first attempt without instruction
-- **SC-006**: The app displays up to 100 tasks without performance degradation
-- **SC-007**: Task data persists across page refreshes and browser sessions
+- **SC-002**: Users can mark a task as complete/incomplete with a single action (one click/tap)
+- **SC-003**: Users can delete a task with a single action (one click/tap)
+- **SC-004**: Users can edit a task and save changes in under 10 seconds
+- **SC-005**: The interface responds to user actions (create, edit, delete, toggle completion) within 100 milliseconds
+- **SC-006**: 95% of users successfully complete the primary task flow (add task, mark complete, delete task) on first attempt without instruction
+- **SC-007**: The app displays up to 100 tasks without performance degradation
+- **SC-008**: Task data and completion status persist across page refreshes and browser sessions
 
 ## Assumptions & Dependencies
 
