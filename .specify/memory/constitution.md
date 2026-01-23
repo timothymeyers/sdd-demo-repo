@@ -1,50 +1,165 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version Change: Initial → 1.0.0
+Ratification: 2026-01-23
+Purpose: Initial constitution for Demo To-Do App project
+
+Core Principles Established:
+- I. Simplicity First: Keep it simple and demonstrable
+- II. User-Centric Design: Focus on user value
+- III. Test-Driven Development: Write tests before implementation
+- IV. Code Quality: Maintain clean, readable code
+- V. Documentation: Keep documentation current
+
+Sections Added:
+- Core Principles (5 principles)
+- Development Standards
+- Quality Gates
+- Governance
+
+Templates Status:
+✅ plan-template.md: Constitution Check section already references constitution
+✅ spec-template.md: Compatible with user story/requirements approach
+✅ tasks-template.md: Compatible with test-first and phased approach
+✅ checklist-template.md: Compatible as supporting artifact
+
+No follow-up TODOs: All placeholders filled with appropriate values.
+-->
+
+# Demo To-Do App Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Simplicity First
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Keep the implementation simple and demonstrable. This is a demo project designed to
+showcase best practices and agent workflows, not to handle production-scale complexity.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rules**:
+- Favor straightforward solutions over clever abstractions
+- Each feature should be independently understandable
+- Avoid premature optimization
+- Use standard tools and approaches unless there's a clear benefit to doing otherwise
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale**: Demo projects serve as learning tools and examples. Complexity obscures
+the core concepts we're trying to demonstrate and makes the project harder to
+understand and maintain.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. User-Centric Design
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Every feature must deliver clear, measurable value to end users. Design decisions
+should prioritize user experience and practical utility over technical elegance.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+**Rules**:
+- All features MUST be described as user stories with acceptance criteria
+- User stories MUST be prioritized (P1, P2, P3) based on user value
+- Each user story MUST be independently testable
+- UI/UX choices MUST be validated through actual user scenarios
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Rationale**: To-do apps exist to help users manage tasks effectively. Technical
+sophistication that doesn't improve the user experience is a distraction from the
+project's core purpose.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### III. Test-Driven Development (NON-NEGOTIABLE)
+
+Tests must be written before implementation code. This is mandatory for all new
+features and changes.
+
+**Rules**:
+- Write tests first, ensure they fail
+- Implement the minimum code to make tests pass
+- Refactor with tests as safety net
+- Tests MUST cover acceptance criteria from user stories
+- Both unit tests and integration tests are required where applicable
+
+**Rationale**: TDD ensures we build what's actually needed, prevents regression, and
+serves as living documentation. For a demo project, it also showcases professional
+development practices.
+
+### IV. Code Quality
+
+Maintain clean, readable, and well-structured code that serves as a good example for
+others to learn from.
+
+**Rules**:
+- Follow language-specific style guides and conventions
+- Use meaningful variable and function names
+- Keep functions small and focused (single responsibility)
+- Avoid code duplication (DRY principle)
+- Comment only when necessary to explain "why", not "what"
+- Run linters and formatters before committing
+
+**Rationale**: As a demo project, code quality is paramount. Others will read and
+learn from this code, so it must exemplify best practices.
+
+### V. Documentation
+
+Keep documentation current, accurate, and helpful. Documentation should serve both
+users and developers.
+
+**Rules**:
+- README MUST explain how to build, test, and run the application
+- Each feature MUST have specification documentation in `/specs/`
+- API contracts MUST be documented
+- Breaking changes MUST be documented in upgrade guides
+- Update documentation in the same PR as code changes
+
+**Rationale**: Documentation is often the first touchpoint for new users and
+contributors. Accurate, up-to-date documentation makes the demo project accessible
+and useful as a learning resource.
+
+## Development Standards
+
+### Technology Stack
+- Use modern, stable versions of chosen technologies
+- Minimize dependencies to reduce complexity
+- Prefer well-maintained, widely-adopted libraries
+- Document all dependencies with clear rationale
+
+### Security
+- Follow OWASP guidelines for web applications
+- Validate all user inputs
+- Use parameterized queries to prevent injection attacks
+- Keep dependencies updated to avoid known vulnerabilities
+- Never commit secrets or credentials to version control
+
+### Performance
+- Keep response times reasonable for a demo (<1 second for typical operations)
+- Use appropriate data structures and algorithms
+- Profile before optimizing
+- Document any performance constraints or goals
+
+## Quality Gates
+
+All changes must pass the following gates before merging:
+
+1. **Constitution Compliance**: Changes must align with core principles
+2. **Tests Pass**: All tests must pass, including new tests for new functionality
+3. **Code Review**: At least one review approval required
+4. **Documentation**: Relevant documentation must be updated
+5. **Linting**: Code must pass all linters and formatters
+6. **No Security Issues**: Must pass security scanning tools
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Amendment Process
+1. Amendments must be proposed as PRs to this constitution
+2. Amendments require clear rationale and impact analysis
+3. Breaking changes to principles require MAJOR version bump
+4. New principles or sections require MINOR version bump
+5. Clarifications and corrections require PATCH version bump
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+### Compliance
+- All PRs must reference this constitution in their description
+- Code reviews must verify constitutional compliance
+- Violations must be justified with documented exceptions
+- Constitution supersedes all other project guidelines
+
+### Versioning
+This constitution follows semantic versioning (MAJOR.MINOR.PATCH):
+- **MAJOR**: Backward-incompatible changes to core principles
+- **MINOR**: New principles, sections, or material expansions
+- **PATCH**: Clarifications, wording improvements, corrections
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-23 | **Last Amended**: 2026-01-23
