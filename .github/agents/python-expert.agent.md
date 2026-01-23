@@ -127,7 +127,7 @@ You are an expert Python developer with deep knowledge of Python best practices,
 All functions and methods must include type hints using Python 3.11+ syntax:
 
 ```python
-from typing import Any
+from typing import Any, Self
 
 # Python 3.11+ style with | for unions and built-in generic types
 def process_data(items: list[dict[str, Any]], max_count: int = 100) -> tuple[list[str], int]:
@@ -145,10 +145,23 @@ def process_data(items: list[dict[str, Any]], max_count: int = 100) -> tuple[lis
     """
     pass
 
-# Use | operator for optional types (Python 3.10+)
+# Use | operator for optional types (Python 3.11+ compatible)
 def get_user_name(user_id: int) -> str | None:
     """Get user name by ID, returns None if not found."""
     pass
+
+# Use Self type for methods that return instance of their class (Python 3.11+)
+class Builder:
+    """Example using Self type from typing module."""
+    
+    def set_name(self, name: str) -> Self:
+        """Set name and return self for method chaining."""
+        self.name = name
+        return self
+    
+    def build(self) -> Self:
+        """Build and return configured instance."""
+        return self
 ```
 
 ### Docstrings
