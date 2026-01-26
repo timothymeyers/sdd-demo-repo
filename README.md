@@ -52,7 +52,7 @@ Anything with inputs, outputs, constraints, steps becomes executable:
 ### Continue Learning
 
 - [AI Engineer](https://www.youtube.com/@aiDotEngineer) (YT Channel)
-- [@DevDem](https://www.youtube.com/@DenDev) (Spec-Kit YT channel)
+- [@DenDev](https://www.youtube.com/@DenDev) (Spec-Kit YT channel)
 - [TL;DR Newsletter](https://tldr.tech/)
 
 ---
