@@ -61,6 +61,7 @@ Anything with inputs, outputs, constraints, steps becomes executable:
 
 This repository includes custom GitHub Copilot agents:
 
+- **account-tech-strategist** - Expert Account Technology Strategist specializing in Microsoft technologies, enterprise customer engagement, and digital transformation strategies
 - **python-expert** - Expert Python developer agent following best practices, using PyTest, and leveraging Context7 for documentation lookup
 - **data-scientist** - Senior Data Scientist expert in Python data analysis, pandas, CSV/JSON processing, filesystem manipulation, schema description, and deriving insights from datasets
 - **speckit agents** - Workflow agents for feature specification and planning
