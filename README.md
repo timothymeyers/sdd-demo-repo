@@ -1,4 +1,4 @@
-# demo-to-do-agent-assignment
+# SDD Demonstration Repository
 
 This repository is a brief demonstration of the **Spec Driven Development (SDD)** process using [Spec-Kit](https://speckit.org/) and [GitHub Copilot Agents](https://github.com/copilot) in the cloud.
 
