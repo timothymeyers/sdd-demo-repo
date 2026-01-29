@@ -28,7 +28,7 @@ SDD is emerging as the default way Devs collaborate with AI.
 Prompt Engineering becomes Context Engineering.  
 Anything with inputs, outputs, constraints, steps becomes executable:
 
-- Account strategies
+- **Account strategies** (see [FDA Account Strategy](./FDA-Account-Strategy.md))
 - Project plans
 - Marketing workflows
 - Onboarding processes
